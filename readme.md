@@ -1,10 +1,10 @@
 # Django Commands
 
-1. `django-admin startproject **projectName** `
+1. `django-admin startproject <projectName> `
    [create django project]
-2. `python manage.py startapp **appName**`
+2. `python manage.py startapp <appName>`
    [create apps inside djangoProject]
-3. `python manage.py runserver **port**`
+3. `python manage.py runserver <port>`
    [run server (port is optional here)]
 4. `python manage.py makemigrations`
    [creating database of models]
