@@ -12,5 +12,7 @@ def home(req):
 	except:
 		pass
 	
-	print(data.keys())
-	return JsonResponse({"message":"Working Successfully"})
+	data['headers']=dict(req.headers) #converting headers to dictionary
+	data['content_type']=req.content_type
+	data['params']=dict(req.GET)
+	return JsonResponse({"message":"Working Successfully","postData":data})
