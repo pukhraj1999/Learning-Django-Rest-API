@@ -1,4 +1,4 @@
-### Django Commands
+# Django Commands
 
 1. django-admin startproject **projectName**
    [create django project]
@@ -7,11 +7,11 @@
 3. python manage.py runserver **port**
    [run server (port is optional here)]
 
-## Register app to settings.py
+# Register app to settings.py
 
 Now add app in the installed array of settings.py file inside **_projectName_** folder.
 
-## Create a view inside views.py file of **_appName_**
+## Create a view inside views.py file of **_api_**
 
 ```py
 from django.http import JsonResponse
@@ -19,7 +19,7 @@ def home(req):
 	return JsonResponse({"message":"Working Successfully"})
 ```
 
-## Create urls.py inside **_appName_**
+## Create urls.py inside **_api_**
 
 ```py
 from django.urls import path
@@ -31,7 +31,7 @@ urlpatterns=[
 ]
 ```
 
-## Adding path of app inside urls.py of **_projectName_**
+## Adding path of app inside urls.py of **_Learning_**
 
 ```py
 from django.urls import path,include
@@ -44,7 +44,7 @@ urlpatterns = [
 
 ## Passing json data as post from client and converting it into python dictionary in django for using it.
 
-### Inside client.py file using for post
+### Inside client.py file
 
 ```py
 import requests
@@ -55,7 +55,7 @@ get_response=requests.get(endpoint,params={"abc":123},json={"query":"Hello Djang
 print(get_response.json())
 ```
 
-### Inside views.py of **_appName_** used for retrieving client data
+### Inside views.py of **_api_** used for retrieving client data
 
 ```py
 from django.http import JsonResponse
@@ -75,7 +75,7 @@ def home(req):
 	return JsonResponse({"message":"Working Successfully","postData":data})
 ```
 
-## Passing Headers and content-type to front end inside views.py of **_appName_**
+## Passing Headers and content-type to front end inside views.py of **_api_**
 
 ```py
 from django.http import JsonResponse
