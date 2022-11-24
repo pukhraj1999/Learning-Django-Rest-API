@@ -141,3 +141,25 @@ Now Make migrations using python manage.py makemigrations command and then compl
 ```
 
 Product.objects.all() gives all data and Product.objects.all().order_by("?").first() gives random data
+
+## Recieving data from product database using views.py file of api
+
+```py
+from django.http import JsonResponse
+import json
+from products.models import Product
+
+# Create your views here.
+def home(req):
+	model_data=Product.objects.all().order_by("?").first() #getting products randomly
+	data={}
+	#Adding model data if available
+	if model_data:
+		data['id']=model_data.id #comes by default
+		data['title']=model_data.title
+		data['content']=model_data.content
+		data['price']=model_data.price
+	return JsonResponse({"message":"Working Successfully","data":data})
+```
+
+Here Serialization Take place in which model instance (model_data) is taken and convert it into a python dictionary and return json to the client.

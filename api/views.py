@@ -1,18 +1,16 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import json
+from products.models import Product
 
 # Create your views here.
 def home(req):
-	#using req.body
-	body=req.body #byte string of json data
-	data={} #data from front end as json
-	try:
-		data=json.loads(body) #converting json to python dictionary
-	except:
-		pass
-	
-	data['headers']=dict(req.headers) #converting headers to dictionary
-	data['content_type']=req.content_type
-	data['params']=dict(req.GET)
-	return JsonResponse({"message":"Working Successfully","postData":data})
+	model_data=Product.objects.all().order_by("?").first() #getting products randomly
+	data={}
+	#Adding model data if available
+	if model_data:
+		data['id']=model_data.id #comes by default
+		data['title']=model_data.title
+		data['content']=model_data.content
+		data['price']=model_data.price
+	return JsonResponse({"message":"Working Successfully","data":data})
