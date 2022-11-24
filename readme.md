@@ -163,3 +163,21 @@ def home(req):
 ```
 
 Here Serialization Take place in which model instance (model_data) is taken and convert it into a python dictionary and return json to the client.
+
+### Python way of doing serialization
+
+```py
+from products.models import Product
+from django.forms.models import model_to_dict
+
+# Create your views here.
+def home(req):
+	model_data=Product.objects.all().order_by("?").first() #getting products randomly
+	data={}
+	#Adding model data if available
+	if model_data:
+		data=model_to_dict(model_data,fields=['id','title','content']) #filed is optional (gives all if not mentioned)
+	return JsonResponse({"message":"Working Successfully","data":data})
+```
+
+model_to_dic(anyModel) => function convert any model to dictionary from json
