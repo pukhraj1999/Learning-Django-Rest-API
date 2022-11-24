@@ -1,7 +1,8 @@
 from django.http import JsonResponse
-import json
 from products.models import Product
-from django.forms.models import model_to_dict
+#from django.forms.models import model_to_dict
+
+from rest_framework.response import Response
 
 # Create your views here.
 def home(req):

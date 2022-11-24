@@ -1,18 +1,18 @@
 # Django Commands
 
-1. django-admin startproject **projectName**
+1. `django-admin startproject **projectName** `
    [create django project]
-2. python manage.py startapp **appName**
+2. `python manage.py startapp **appName**`
    [create apps inside djangoProject]
-3. python manage.py runserver **port**
+3. `python manage.py runserver **port**`
    [run server (port is optional here)]
-4. python manage.py makemigrations
+4. `python manage.py makemigrations`
    [creating database of models]
-5. python manage.py migrate
+5. `python manage.py migrate`
    [sending migrations to admin panel]
-6. python manage.py shell
+6. `python manage.py shell`
    [To use shell for inserting data in models]
-7. python manage.py createsuperuser
+7. `python manage.py createsuperuser`
    [Create superuser for admin pannel]
 
 # Register app to settings.py
@@ -124,7 +124,7 @@ class Product(models.Model):
 
 ```
 
-Now Make migrations using python manage.py makemigrations command and then complete it with python manage.py migrate to use your models
+Now Make migrations using `python manage.py makemigrations` command and then complete it with `python manage.py migrate` to use your models
 
 ## To add data to Product model using shell use python manage.py shell command and then type below things
 
@@ -181,3 +181,20 @@ def home(req):
 ```
 
 model_to_dic(anyModel) => function convert any model to dictionary from json
+
+# Installing Rest Framework of django
+
+Inside terminal type below command...
+
+```
+pip install djangorestframework
+```
+
+Add `rest_framework` to the `INSTALLED_APPS` setting inside Learning
+
+```py
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+]
+```
