@@ -199,7 +199,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-## Using Decorator `@api_view([Methods])` and `Response` from `rest_framework` inside `views.py` of `api`
+## Using Decorator **_@api_view([Methods])_** and **_Response_** from **_rest_framework_** inside **_views.py_** of **_api_**
 
 ```py
 from django.forms.models import model_to_dict
