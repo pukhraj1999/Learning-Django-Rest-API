@@ -18,4 +18,7 @@ class ProductSerializer(serializers.ModelSerializer):
 	#telling serializer what discount property means
 	#obj contains instance of data
 	def get_discount(self,obj):
-		return obj.getDiscount
+		try:
+			return obj.getDiscount
+		except:
+			return None

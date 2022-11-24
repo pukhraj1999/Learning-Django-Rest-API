@@ -208,7 +208,7 @@ from products.models import Product
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-@api_view(['GET','POST']) #this decorator allows only methods defined by us
+@api_view(['GET']) #this decorator allows only methods defined by us
 def home(req):
 	model_data=Product.objects.all().order_by("?").first() #getting products randomly
 	data={}
@@ -286,5 +286,48 @@ class ProductSerializer(serializers.ModelSerializer):
 	#telling serializer what discount property means
 	#obj contains instance of data
 	def get_discount(self,obj):
-		return obj.getDiscount
+		try:
+			return obj.getDiscount
+		except:
+			return None
+```
+
+## In order to post the data do this in **_client.py_** file
+
+```py
+import requests
+
+endpoint="http://localhost:8000/api/about/"
+
+get_response=requests.post(endpoint,json={"title":"Hello Love!!"})
+print(get_response.status_code)
+print(get_response.text)
+```
+
+## Create a about function in **_views.py_** file of api for posting data
+
+```py
+@api_view(['POST'])
+def about(req):
+		serializer=ProductSerializer(data=req.data)
+		if serializer.is_valid(raise_exception=True): #check whether according to serializers field
+			print(serializer.data)
+			data=serializer.data
+			return Response(data)
+		return Response({"Invalid data":"Problem in parsing about"},status=400)
+```
+
+It first matches the requirements of serializers and then the request of models.Raise Exception let's the client know what the problem is.
+
+## Now register this in **_urls.py_** file of api
+
+```py
+from django.urls import path
+
+from . import views
+
+urlpatterns=[
+	path("",views.home),
+	path("about/",views.about)
+]
 ```
