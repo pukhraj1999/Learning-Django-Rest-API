@@ -9,7 +9,7 @@
 
 ## Register app to settings.py
 
-Now add app in the installed array of settings.py file inside **projectName** folder.
+Now add app in the installed array of settings.py file inside **_projectName_** folder.
 
 ## Create a view inside views.py file of **_appName_**
 
@@ -55,7 +55,7 @@ get_response=requests.get(endpoint,params={"abc":123},json={"query":"Hello Djang
 print(get_response.json())
 ```
 
-### Inside views.py of api used for retrieving client data
+### Inside views.py of **_appName_** used for retrieving client data
 
 ```py
 from django.http import JsonResponse
