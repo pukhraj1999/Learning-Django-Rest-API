@@ -1,4 +1,4 @@
-## Django Commands
+### Django Commands
 
 1. django-admin startproject **projectName**
    [create django project]
@@ -40,4 +40,37 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include('api.urls')),
 ]
+```
+
+## Passing json data as post from client and converting it into python dictionary in django for using it.
+
+### Inside client.py file using for post
+
+```py
+import requests
+
+endpoint="http://localhost:8000/api/"
+
+get_response=requests.get(endpoint,params={"abc":123},json={"query":"Hello Django!!"})
+print(get_response.json())
+```
+
+### Inside views.py of api used for retrieving client data
+
+```py
+from django.http import JsonResponse
+import json
+
+# Create your views here.
+def home(req):
+	#using req.body
+	body=req.body #byte string of json data
+	data={} #data from front end as json
+	try:
+		data=json.loads(body) #converting json to python dictionary
+	except:
+		pass
+
+	print(data.keys())
+	return JsonResponse({"message":"Working Successfully"})
 ```
