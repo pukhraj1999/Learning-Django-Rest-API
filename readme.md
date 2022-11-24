@@ -317,7 +317,7 @@ def about(req):
 		return Response({"Invalid data":"Problem in parsing about"},status=400)
 ```
 
-It first matches the requirements of serializers and then the request of models.Raise Exception let's the client know what the problem is.
+It first matches the requirements of serializers and then the requirements of models.Raise Exception let's the client know what the problem is.
 
 ## Now register this in **_urls.py_** file of api
 
