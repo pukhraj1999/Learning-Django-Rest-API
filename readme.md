@@ -12,6 +12,8 @@
    [sending migrations to admin panel]
 6. python manage.py shell
    [To use shell for inserting data in models]
+7. python manage.py createsuperuser
+   [Create superuser for admin pannel]
 
 # Register app to settings.py
 
