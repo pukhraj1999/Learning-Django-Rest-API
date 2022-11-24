@@ -217,3 +217,74 @@ def home(req):
 		data=model_to_dict(model_data,fields=['id','title','content'])
 	return Response({"message":"Working Successfully","data":data},status=200)
 ```
+
+## Adding **_sales_price_** property to model using **_@property_** decorator in **_models.py_** of **_product_**
+
+```py
+from django.db import models
+
+# Create your models here.
+class Product(models.Model):
+	title=models.CharField(max_length=120)
+	content=models.TextField(blank=True,null=True)
+	price=models.DecimalField(max_digits=15,decimal_places=2,default=99.99)
+
+	@property
+	def sale_price(self): #add 80% discount
+		return '%.2f' % (float(self.price)*0.8)
+
+	@property
+	def getDiscount(self):
+		return "80%"
+
+	#using title as field to show on admin
+	def __str__(self):
+		return self.title
+```
+
+# Using serializers of rest_framework in place of model_to_data for serializing
+
+**`Note:-` Serializers are very similar to forms**
+
+Inside `forms.py` of `product`,forms looks like this...
+
+```py
+from django import forms
+
+from .models import Product
+
+class ProductForm(forms.ModelForm):
+	class Meta:
+		model=Product
+		fields=[
+			'title',
+			'content',
+			'price'
+		]
+```
+
+Inside `serializers.py` of `product`,serializers looks like this...
+
+```py
+from rest_framework import serializers
+
+from .models import Product
+
+class ProductSerializer(serializers.ModelSerializer):
+	#for changing getDiscount property name
+	discount=serializers.SerializerMethodField(read_only=True)
+	class Meta:
+		model=Product
+		fields=[
+			'title',
+			'content',
+			'price',
+			'sale_price',
+			'discount'
+		]
+
+	#telling serializer what discount property means
+	#obj contains instance of data
+	def get_discount(self,obj):
+		return obj.getDiscount
+```
