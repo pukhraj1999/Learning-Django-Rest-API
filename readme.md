@@ -132,4 +132,10 @@ Now Make migrations using python manage.py makemigrations command and then compl
 <Product: Hello shell!!>
 >>> Product.objects.create(title="Hello Django!!",content="Let's do it",price=90.00)
 <Product: Hello Django!!>
+>>> Product.objects.all()
+<QuerySet [<Product: Hello shell!!>, <Product: Hello Django!!>]>
+>>> Product.objects.all().order_by("?").first()
+<Product: Hello Django!!>
 ```
+
+Product.objects.all() gives all data and Product.objects.all().order_by("?").first() gives random data
